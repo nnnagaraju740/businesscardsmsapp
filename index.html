@@ -28,7 +28,7 @@
 				<ion-side-menu-content>
 					<ion-nav-bar class="bar bar-header bar-balanced">
 						<!--<ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>-->
-						<ion-nav-buttons side="left">
+						<ion-nav-buttons side="left" style="display:none;">
 							<button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
 						</ion-nav-buttons>
 					</ion-nav-bar>
@@ -41,13 +41,13 @@
 					<ion-content>
 						<ion-cart></ion-cart>
 						<ion-list>
-							<ion-item nav-clear menu-close href="#/app/profile" >
+							<ion-item nav-clear menu-close href="#/app/profile" class="menu-close">
 								Profile
 							</ion-item>
-							<ion-item nav-clear menu-close href="#/app/custommessage" >
+							<ion-item nav-clear menu-close href="#/app/custommessage" class="menu-close">
 								My Messages
 							</ion-item>
-							<ion-item nav-clear menu-close href="#/app/sendsms" >
+							<ion-item nav-clear menu-close href="#/app/sendsms" class="menu-close">
 								Send Message
 							</ion-item>
 							<!--<ion-item nav-clear menu-close href="#/app/home">
