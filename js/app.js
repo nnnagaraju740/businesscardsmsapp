@@ -77,6 +77,18 @@ angular.module('starter', ['ionic'])
 })
 .controller("HomeController", function($scope,$sce,$http,$location,$state) {
   	$scope.p ={};
+	$scope.validateRNum=function(){
+		var filterr = /^[0-9-+]+$/;
+		var mobileInt=$('#mobile').val();
+		var stringNum=mobileInt.toString();
+		if(filterr.test(mobileInt)){
+			if(stringNum.length==3){
+				$('#mobile').val(mobileInt+'-');
+			}else if(stringNum.length==7){
+				$('#mobile').val(mobileInt+'-');
+			}
+		}
+	}
 	$scope.regForm = function(ngForm) {
 		var flag = true;
 		var filter = /^[0-9-+]+$/;
@@ -166,9 +178,19 @@ angular.module('starter', ['ionic'])
 	}
 })
 .controller('ProfileController', function($scope,$sce,$http,$location,$state) {
-	$scope.updatedMessage = "";
+	$scope.validateNum=function(){
+		var filterr = /^[0-9-+]+$/;
+		var mobileInt=$('#mobile').val();
+		var stringNum=mobileInt.toString();
+		if(filterr.test(mobileInt)){
+			if(stringNum.length==3){
+				$('#mobile').val(mobileInt+'-');
+			}else if(stringNum.length==7){
+				$('#mobile').val(mobileInt+'-');
+			}
+		}
+	}
 	$scope.updForm = function(ngForm) {
-		$scope.updatedMessage   ="";
 		var flag = true;
 		var filter = /^[0-9-+]+$/;
 		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -237,11 +259,11 @@ angular.module('starter', ['ionic'])
 		};	
 		$http.put(webServiceUrl+'register/'+$scope.user_id,dataObj)
 		.success(function(response) {
-			$scope.updatedMessage   = 'Successfully details updated';
+			$('#profileMessage').html("Successfully details updated");
 			setTimeout(function() {
 				$('#profileMessage').html("");
-			}, 5000);
-			$location.path('/app/custommessage');
+			}, 2000);
+			//$location.path('/app/custommessage');
 		});
 	}
 	if(typeof localStorage["user_id"]!='undefined'){	
@@ -263,6 +285,18 @@ angular.module('starter', ['ionic'])
 
 .controller("smsController", function($scope,$sce,$http,$location,$state) {	
 	$scope.failError ='';
+	$scope.addIphon=function(){
+		var filterr = /^[0-9-+]+$/;
+		var mobileInt=$('#mobile_1').val();
+		var stringNum=mobileInt.toString();
+		if(filterr.test(mobileInt)){
+			if(stringNum.length==3){
+				$('#mobile_1').val(mobileInt+'-');
+			}else if(stringNum.length==7){
+				$('#mobile_1').val(mobileInt+'-');
+			}
+		}
+	}
 	$scope.sendSmsForm=function(smsForm){
 		var flag = true;		
 		var filter = /^[0-9-+]+$/;
