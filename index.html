@@ -149,12 +149,14 @@
 						<div class="center_text pad_t_b">
 							<span id="error_cus__mess" class="has_error_color"></span>
 						</div>						
-						<div class="card" id="customMessages">
+						<div class="" id="customMessages">
 							<form id="frmCSms" name="frmCSms">
-								<div class="item item-text-wrap">
+								<div class="">
+								<label  class="item item-input">
 									<textarea  id="cmessage_name" name="cmessage_name" Placeholder="Enter custom message that you wish to send to your contact or client." ng-model="cmessage_name" >{{ cmessage_name }}</textarea>
+								</label>
 								</div>
-								<div class="padding" >
+								<div class="" >
 									<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="customSms(frmCSms)">&nbsp;&nbsp;Save&nbsp;&nbsp;</a>
 								</div>
 							</form>
