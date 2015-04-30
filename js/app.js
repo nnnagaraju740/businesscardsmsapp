@@ -413,8 +413,8 @@ angular.module('starter', ['ionic'])
 	
 	$scope.sendCMessage=function(){
 		$scope.operations="Update";
-		$('#editMessage').attr('contentEditable','true');
-		$('#editMessage').focus();
+		$('#editMessage').html('<textarea id="textareaMessage">'+$.trim($('#editMessage').html())+'</textarea>');
+		$('#textareaMessage').focus();
 		$('#editButton').hide();
 	}
 	$scope.navigateTosms=function(type){
@@ -423,14 +423,14 @@ angular.module('starter', ['ionic'])
 		}else{
 			var message_id = $('#message_id').val();
 			var dataObj = {
-				 message		:	$('#editMessage').html(),
+				 message		:	$('#textareaMessage').val(),
 				 user_id 	    : 	JSON.parse(localStorage["user_id"]),
 				 message_id 	: 	message_id,
 			 };		
 			var smsUrl=webServiceUrl+'customsms';
 			$http.post(smsUrl,dataObj).success(function(response) {
 				$scope.operations="Next";
-				$('#editMessage').attr('contentEditable','false');
+				$('#editMessage').html($('#textareaMessage').val());
 				$('#editButton').show();
 			});
 		}
