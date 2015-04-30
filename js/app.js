@@ -52,30 +52,7 @@ angular.module('starter', ['ionic'])
 .controller('AppController', function($scope, $ionicSideMenuDelegate,$location,$http) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft(); 
-	}; 	
-	/*
-	$scope.profileAction = function() {
-		if(typeof localStorage["user_id"]!='undefined'){
-			$location.path('/app/profile');
-		}else{
-			$location.path('/app/home');
-		}
-	}
-	$scope.customAction = function() {
-		if(typeof localStorage["user_id"]!='undefined'){
-			$location.path('/app/custommessage');
-		}else{
-			$location.path('/app/home');
-		}
-	}
-	$scope.smsAction = function() {
-		if(typeof localStorage["user_id"]!='undefined'){
-			$location.path('/app/sendsms');
-		}else{
-			$location.path('/app/home');
-		}
-	}
-	*/
+	}; 
 })
 .controller("HomeController", function($scope,$sce,$http,$location,$state) {
   	$scope.p ={};
@@ -191,7 +168,8 @@ angular.module('starter', ['ionic'])
 		}
 	}
 	if(typeof localStorage["user_id"]!='undefined'){
-		$scope.profileAction();
+		//$scope.profileAction();
+		$location.path('/app/profile');
 	}
 })
 .controller('ProfileController', function($scope,$sce,$http,$location,$state) {
