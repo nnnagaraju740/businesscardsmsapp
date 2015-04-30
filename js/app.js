@@ -1,7 +1,7 @@
 angular.module('starter', ['ionic'])  
 
 .config(function($stateProvider, $urlRouterProvider) {
-
+  
   $stateProvider
     .state('app', {
       url: "/app",
@@ -51,8 +51,8 @@ angular.module('starter', ['ionic'])
 
 .controller('AppController', function($scope, $ionicSideMenuDelegate,$location,$http) {
 	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
+		$ionicSideMenuDelegate.toggleLeft(); 
+	}; 	
 	/*
 	$scope.profileAction = function() {
 		if(typeof localStorage["user_id"]!='undefined'){
@@ -291,7 +291,7 @@ angular.module('starter', ['ionic'])
 		};	
 		$http.put(webServiceUrl+'register/'+$scope.user_id,dataObj)
 		.success(function(response) {
-			$('#profileMessage').html("Successfully details updated");
+			$('#profileMessage').html("Profile updated successfully.");
 			setTimeout(function() {
 				$('#profileMessage').html("");
 			}, 2000);
