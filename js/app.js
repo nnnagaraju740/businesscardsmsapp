@@ -116,9 +116,24 @@ angular.module('starter', ['ionic'])
 				$('#error_mess').html('Please enter only numbers.');
 				flag=false; return false;			
 			}else{
-				$('#m_n').removeClass("has_error_invalid");
-				$('#m_n').addClass("has_error_valid");
-				$('#error_mess').html('');
+				if(m_id.toString().length != 12){
+					$('#m_n').removeClass("has_error_valid");
+					$('#m_n').addClass("has_error_invalid");
+					$('#error_mess').html('Please enter whole number.');
+					flag=false; return false;	
+				}else{
+					var finalSmsNum=m_id.split('-');
+					if(finalSmsNum[0].toString().length==3 && finalSmsNum[1].toString().length==3 && finalSmsNum[2].toString().length==4){
+						$('#m_n').removeClass("has_error_invalid");
+						$('#m_n').addClass("has_error_valid");
+						$('#error_mess').html('');
+					}else{
+						$('#m_n').removeClass("has_error_valid");
+						$('#m_n').addClass("has_error_invalid");
+						$('#error_mess').html('Please enter valid number.');
+						flag=false; return false;
+					}
+				}
 			}	
 		}else{ 
 			$('#m_n').removeClass("has_error_invalid");
@@ -212,15 +227,30 @@ angular.module('starter', ['ionic'])
 		}else if($('#mobile').val()!=''){
 			var m_id = $('#mobile').val();
 			if(!filter.test(m_id)){
-			$('#m_n').removeClass("has_error_valid");
-			$('#m_n').addClass("has_error_invalid");
-			$('#error_mess').html('Please enter only numbers.');
-			flag=false; return false;			
-		}else{
-			$('#m_n').removeClass("has_error_invalid");
-			$('#m_n').addClass("has_error_valid");
-			$('#error_mess').html('');
-		}	
+				$('#m_n').removeClass("has_error_valid");
+				$('#m_n').addClass("has_error_invalid");
+				$('#error_mess').html('Please enter only numbers.');
+				flag=false; return false;			
+			}else{
+				if(m_id.toString().length != 12){
+					$('#m_n').removeClass("has_error_valid");
+					$('#m_n').addClass("has_error_invalid");
+					$('#error_mess').html('Please enter whole number.');
+					flag=false; return false;	
+				}else{
+					var finalSmsNum=m_id.split('-');
+					if(finalSmsNum[0].toString().length==3 && finalSmsNum[1].toString().length==3 && finalSmsNum[2].toString().length==4){
+						$('#m_n').removeClass("has_error_invalid");
+						$('#m_n').addClass("has_error_valid");
+						$('#error_mess').html('');
+					}else{
+						$('#m_n').removeClass("has_error_valid");
+						$('#m_n').addClass("has_error_invalid");
+						$('#error_mess').html('Please enter valid number.');
+						flag=false; return false;
+					}
+				}
+			}	
 		}else{ 
 			$('#m_n').removeClass("has_error_invalid");
 			$('#m_n').addClass("has_error_valid");
@@ -313,9 +343,24 @@ angular.module('starter', ['ionic'])
 				$('#error_sms_mess').html('Please enter only numbers.');
 				flag=false; return false;			
 			}else{
-				$('#mo_n').removeClass("has_error_invalid");
-				$('#mo_n').addClass("has_error_valid");
-				$('#error_sms_mess').html('');
+				if(m_id.toString().length != 12){
+					$('#mo_n').removeClass("has_error_valid");
+					$('#mo_n').addClass("has_error_invalid");
+					$('#error_sms_mess').html('Please enter whole number.');
+					flag=false; return false;	
+				}else{
+					var finalSmsNum=m_id.split('-');
+					if(finalSmsNum[0].toString().length==3 && finalSmsNum[1].toString().length==3 && finalSmsNum[2].toString().length==4){
+						$('#mo_n').removeClass("has_error_invalid");
+						$('#mo_n').addClass("has_error_valid");
+						$('#error_sms_mess').html('');
+					}else{
+						$('#mo_n').removeClass("has_error_valid");
+						$('#mo_n').addClass("has_error_invalid");
+						$('#error_sms_mess').html('Please enter valid number.');
+						flag=false; return false;
+					}
+				}
 			}	
 		}else{ 
 			$('#mo_n').removeClass("has_error_invalid");
