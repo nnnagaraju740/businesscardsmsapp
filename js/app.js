@@ -1,0 +1,415 @@
+angular.module('starter', ['ionic'])  
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('app', {
+      url: "/app",
+      abstract: true,
+      templateUrl: "app.html"
+    })
+    .state('app.home', {
+      url: "/home",
+      views: {
+        'appContent' :{
+          templateUrl: "home.html",
+          controller : "HomeController"
+        }
+      }
+    })
+	.state('app.profile', {
+      url: "/profile",
+      views: {
+        'appContent' :{
+          controller : "ProfileController",
+		  templateUrl: "profile.html"
+        }
+      }
+    })
+	
+	.state('app.custommessage', {
+      url: "/custommessage",
+      views: {
+        'appContent' :{
+          templateUrl: "custommessage.html",
+          controller : "customSmsController"
+        }
+      }
+    })
+	.state('app.sendsms', {
+      url: "/sendsms",
+      views: {
+        'appContent' :{
+          templateUrl: "sendsms.html",
+         controller : "smsController"
+        }
+      }
+    })
+  
+  $urlRouterProvider.otherwise("/app/home");
+})
+
+.controller('AppController', function($scope, $ionicSideMenuDelegate,$location,$http) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	$scope.profileAction = function() {
+		if(typeof localStorage["user_id"]!='undefined'){
+			$location.path('/app/profile');
+		}else{
+			$location.path('/app/home');
+		}
+	}
+	$scope.customAction = function() {
+		if(typeof localStorage["user_id"]!='undefined'){
+			$location.path('/app/custommessage');
+		}else{
+			$location.path('/app/home');
+		}
+	}
+	$scope.smsAction = function() {
+		if(typeof localStorage["user_id"]!='undefined'){
+			$location.path('/app/sendsms');
+		}else{
+			$location.path('/app/home');
+		}
+	}
+})
+.controller("HomeController", function($scope,$sce,$http,$location,$state) {
+  	$scope.p ={};
+	$scope.regForm = function(ngForm) {
+		var flag = true;
+		var filter = /^[0-9-+]+$/;
+		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if($('#username').val()==''){
+			$('#f_n').removeClass("has_error_valid");
+			$('#f_n').addClass("has_error_invalid");
+			$('#error_mess').html('First Name is required.');
+			flag=false; return false;
+		}else{ 
+			$('#f_n').removeClass("has_error_invalid");
+			$('#f_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}
+		if($('#mobile').val()==''){			
+			$('#m_n').removeClass("has_error_valid");
+			$('#m_n').addClass("has_error_invalid");
+			$('#error_mess').html('Mobile Number is required.');
+			flag=false; return false;
+		}else if($('#mobile').val()!=''){
+			var m_id = $('#mobile').val();
+			if(!filter.test(m_id)){
+				$('#m_n').removeClass("has_error_valid");
+				$('#m_n').addClass("has_error_invalid");
+				$('#error_mess').html('Please enter only numbers.');
+				flag=false; return false;			
+			}else{
+				$('#m_n').removeClass("has_error_invalid");
+				$('#m_n').addClass("has_error_valid");
+				$('#error_mess').html('');
+			}	
+		}else{ 
+			$('#m_n').removeClass("has_error_invalid");
+			$('#m_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}
+		if($('#email').val()==''){			
+			$('#e_n').removeClass("has_error_valid");
+			$('#e_n').addClass("has_error_invalid");
+			$('#error_mess').html('Email Address is required.');
+			flag=false; return false;
+		}else if($('#email').val()!=''){
+			var e_id = $('#email').val();
+			if(!regex.test(e_id)){
+				$('#e_n').removeClass("has_error_valid");
+				$('#e_n').addClass("has_error_invalid");
+				$('#error_mess').html('Entered email formate is wrong.');
+				flag=false; return false;
+			}else{
+				$('#e_n').removeClass("has_error_invalid");
+				$('#e_n').addClass("has_error_valid");
+				$('#error_mess').html('');
+			}
+		}else{ 
+			$('#e_n').removeClass("has_error_invalid");
+			$('#e_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}	
+		if(flag==false){
+			return false;
+		}else{
+			$scope.regMessage   = '';
+			var dataObj = {
+				username		:	ngForm.username.$viewValue,
+				lastname		:	ngForm.lastname.$viewValue,
+				mobile_num		:	ngForm.mobile.$viewValue,
+				fax		        :	ngForm.fax.$viewValue,
+				email		    :	ngForm.email.$viewValue,
+				web_url		    :	ngForm.web_url.$viewValue
+			};	
+			$http.post(webServiceUrl+'register',dataObj)
+			.success(function(response) {
+				if(response.mobile != '0'){
+					$scope.modile = response.mobile;
+					$scope.userName = response.user_name;
+					$scope.user_id = response.user_id;
+					localStorage.setItem( 'user_name', JSON.stringify($scope.userName) );
+					localStorage.setItem( 'mobile', JSON.stringify($scope.modile) );
+					localStorage.setItem( 'user_id', JSON.stringify($scope.user_id) );
+					$location.path('/app/custommessage');
+				}
+			});
+		}
+	}
+	if(typeof localStorage["user_id"]!='undefined'){
+		$scope.profileAction();
+	}
+})
+.controller('ProfileController', function($scope,$sce,$http,$location,$state) {
+	$scope.updatedMessage = "";
+	$scope.updForm = function(ngForm) {
+		$scope.updatedMessage   ="";
+		var flag = true;
+		var filter = /^[0-9-+]+$/;
+		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if($('#username').val()==''){
+			$('#f_n').removeClass("has_error_valid");
+			$('#f_n').addClass("has_error_invalid");
+			$('#error_mess').html('First Name is required.');
+			flag=false; return false;
+		}else{ 
+			$('#f_n').removeClass("has_error_invalid");
+			$('#f_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}
+		if($('#mobile').val()==''){			
+			$('#m_n').removeClass("has_error_valid");
+			$('#m_n').addClass("has_error_invalid");
+			$('#error_mess').html('Mobile Number is required.');
+			flag=false; return false;
+		}else if($('#mobile').val()!=''){
+			var m_id = $('#mobile').val();
+			if(!filter.test(m_id)){
+			$('#m_n').removeClass("has_error_valid");
+			$('#m_n').addClass("has_error_invalid");
+			$('#error_mess').html('Please enter only numbers.');
+			flag=false; return false;			
+		}else{
+			$('#m_n').removeClass("has_error_invalid");
+			$('#m_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}	
+		}else{ 
+			$('#m_n').removeClass("has_error_invalid");
+			$('#m_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}
+		if($('#email').val()==''){			
+			$('#e_n').removeClass("has_error_valid");
+			$('#e_n').addClass("has_error_invalid");
+			$('#error_mess').html('Email Address is required.');
+			flag=false; return false;
+		}else if($('#email').val()!=''){
+			var e_id = $('#email').val();
+			if(!regex.test(e_id)){
+			$('#e_n').removeClass("has_error_valid");
+			$('#e_n').addClass("has_error_invalid");
+			$('#error_mess').html('Entered email formate is wrong.');
+			flag=false; return false;
+		}else{
+			$('#e_n').removeClass("has_error_invalid");
+			$('#e_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}
+		}else{ 
+			$('#e_n').removeClass("has_error_invalid");
+			$('#e_n').addClass("has_error_valid");
+			$('#error_mess').html('');
+		}
+		$scope.user_id 		= 	JSON.parse(localStorage["user_id"]);
+		var dataObj = {
+			username		:	ngForm.username.$viewValue,
+			lastname		:	ngForm.lastname.$viewValue,
+			mobile_num		:	ngForm.mobile.$viewValue,
+			fax		        :	ngForm.fax.$viewValue,
+			email		    :	ngForm.email.$viewValue,
+			web_url		    :	ngForm.web_url.$viewValue
+		};	
+		$http.put(webServiceUrl+'register/'+$scope.user_id,dataObj)
+		.success(function(response) {
+			$scope.updatedMessage   = 'Successfully details updated';
+			setTimeout(function() {
+				$('#profileMessage').html("");
+			}, 5000);
+			$location.path('/app/custommessage');
+		});
+	}
+	if(typeof localStorage["user_id"]!='undefined'){	
+		$scope.user_id 		= 	JSON.parse(localStorage["user_id"]);
+		$http.get(webServiceUrl+'register/'+$scope.user_id)	
+		.success(function(response) {
+			var results = [response.data]; 
+			$scope.puser_name = response.data.user_name;
+			$scope.plastname = response.data.lastname;
+			$scope.pmobile = response.data.mobile;
+			$scope.pemail = response.data.email;
+			$scope.pfax = response.data.fax;				
+			$scope.pweb_site_url = response.data.web_site_url; 
+		});
+	}else{
+		$location.path('/app/home');
+	}
+})
+
+.controller("smsController", function($scope,$sce,$http,$location,$state) {	
+	$scope.failError ='';
+	$scope.sendSmsForm=function(smsForm){
+		var flag = true;		
+		var filter = /^[0-9-+]+$/;
+		if($('#mobile_1').val()==''){			
+			$('#mo_n').removeClass("has_error_valid");
+			$('#mo_n').addClass("has_error_invalid");
+			$('#error_sms_mess').html('Mobile Number is required.');
+			flag=false; return false;
+		}else if($('#mobile_1').val()!=''){
+			var m_id = $('#mobile_1').val();
+			if(!filter.test(m_id)){
+				$('#mo_n').removeClass("has_error_valid");
+				$('#mo_n').addClass("has_error_invalid");
+				$('#error_sms_mess').html('Please enter only numbers.');
+				flag=false; return false;			
+			}else{
+				$('#mo_n').removeClass("has_error_invalid");
+				$('#mo_n').addClass("has_error_valid");
+				$('#error_sms_mess').html('');
+			}	
+		}else{ 
+			$('#mo_n').removeClass("has_error_invalid");
+			$('#mo_n').addClass("has_error_valid");
+			$('#error_sms_mess').html('');
+		}
+		if($('#message_1').val()==''){
+			$('#sms_mes').removeClass("has_error_valid");
+			$('#sms_mes').addClass("has_error_invalid");
+			$('#error_sms_mess').html('Select Message');
+			flag=false; return false;	
+		}else{
+			$('#sms_mes').removeClass("has_error_invalid");
+			$('#sms_mes').addClass("has_error_valid");
+			$('#error_sms_mess').html('');
+		}
+		if(flag==false){
+			return false;
+		}else{
+			var dataObj = {
+				mobile		:	smsForm.mobile_1.$viewValue,
+				message		:	smsForm.message_1.$viewValue,
+				user_id 	: 	JSON.parse(localStorage["user_id"]),
+				mobile_from : 	JSON.parse(localStorage["mobile"]),
+			};	
+			var smsUrl=webServiceUrl+'sendsms';
+			$http.post(smsUrl,dataObj).success(function(response) {
+				if(response.sms_id == '0'){
+					$scope.failError="Message Not Sent.";
+				}else{
+					$scope.failError="Message Sent Successfully.";
+				}
+				setTimeout(function() {
+						  $('#smsMsg').html("");
+				}, 10000);	
+				$('#mobile_1').val("");				
+				$('#message_1').val("");				
+			});
+		}
+	}
+	if(typeof localStorage["user_id"]=='undefined'){
+		$location.path('/app/home');
+	}
+})
+.controller("customSmsController", function($scope,$sce,$http,$compile,$location,$state) {
+	
+	$scope.sendCMessage=function(){
+		$scope.operations="Update";
+		$('#editMessage').attr('contentEditable','true');
+		$('#editMessage').focus();
+		$('#editButton').hide();
+	}
+	$scope.navigateTosms=function(type){
+		if(type=='Next'){
+			$location.path('/app/sendsms');
+		}else{
+			var message_id = $('#message_id').val();
+			var dataObj = {
+				 message		:	$('#editMessage').html(),
+				 user_id 	    : 	JSON.parse(localStorage["user_id"]),
+				 message_id 	: 	message_id,
+			 };		
+			var smsUrl=webServiceUrl+'customsms';
+			$http.post(smsUrl,dataObj).success(function(response) {
+				$scope.operations="Next";
+				$('#editMessage').attr('contentEditable','false');
+				$('#editButton').show();
+			});
+		}
+	}
+	$scope.customSms=function(csmsForm){
+		var flag= true;
+		if($('#cmessage_name').val()==''){
+			$('#ms_n').removeClass("has_error_valid");
+			$('#ms_n').addClass("has_error_invalid");
+			$('#error_cus__mess').html('Custom Message is required.');
+			flag=false;
+		}else{ 
+			$('#ms_n').removeClass("has_error_invalid");
+			$('#ms_n').addClass("has_error_valid");
+			$('#error_cus__mess').html('');
+		}
+		if(flag==false){
+			return false;
+		}else{
+			if(csmsForm==0){
+				var message_text=0;
+			}else{
+				var message_text=csmsForm.cmessage_name.$viewValue;
+			}
+			$('#customMessages').hide();
+			$('#msgList').show();
+			$('#msgListnext').show();
+			$scope.operations="Next";
+			message_id = '';
+			var dataObj = {
+				 message		:	message_text,
+				 user_id 	    : 	JSON.parse(localStorage["user_id"]),
+				 message_id 	: 	message_id,
+			 };		
+			var smsUrl=webServiceUrl+'customsms';
+			$http.post(smsUrl,dataObj).success(function(response) {
+				$scope.message='';
+				$('#customMessages').hide();
+				$scope.cmessage_id = response.mess_id;
+				//$location.path('/app/sendsms');
+			});
+		}
+	}
+	if(typeof localStorage["user_id"]!='undefined'){
+		$scope.user_id 		= 	JSON.parse(localStorage["user_id"]);
+		$http.get(webServiceUrl+'customsms/'+$scope.user_id)	
+		.success(function(response) {
+			if(response.value == 1){
+				$scope.message='';
+				$('#customMessages').hide();
+				$('#msgList').show();
+				$('#msgListnext').show();
+				$scope.operations="Next";
+				$scope.cmessage_name = response.result[0].message_name;
+				$scope.dmessage_name = response.result[0].message_name;
+				$scope.cmessage_id = response.result[0].message_id;  
+			}else{
+				$('#customMessages').show();
+				$scope.cmessage_id="";
+			}
+		});
+	}else{
+		$location.path('/app/home');
+	}
+})

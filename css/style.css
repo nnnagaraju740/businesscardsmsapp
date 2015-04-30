@@ -1,0 +1,67 @@
+/* Empty. Add your own CSS if you like */
+.center_text{
+	text-align:center;
+	font-size:16px;
+}
+.mar_top{
+	margin-top:30px;
+}
+
+.logo{
+	text-align:center;
+}
+.logo img{
+	width:150px;
+}
+.float_r{
+	float:right;
+}
+.item-input {
+	margin-bottom:10px;
+}
+textarea{
+	height:200px;
+}
+.bar .title{
+	font-size:19px !important;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] { font-size: 16px !important;}
+.button{ font-size: 18px !important;}
+.list{margin-bottom:0!important; padding-bottom:0 !important}
+textarea:focus, input:focus{
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
+    -webkit-user-modify: read-write-plaintext-only;
+	outline: none;
+}
+* {
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	outline: none; 
+}
+input:focus {
+   outline: none;
+}
+textarea:focus {
+    outline: none;
+}
+select:focus {
+    outline: none;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+:focus {
+    outline: none;
+}
+.has_error_invalid {
+ border-bottom: 2px solid red;
+}
+.has_error_valid {
+ border-bottom: 2px solid green;
+}
+ .has_error_color{
+       color:red;
+}
+.pad_t_b{
+       margin-bottom:2px;
+}
+

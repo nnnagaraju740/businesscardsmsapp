@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title></title>
+		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+		<link href="css/ionic.app.css" rel="stylesheet">-->
+		<!-- ionic/angularjs js -->
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<!-- cordova script (this will be a 404 during development) 
+		<script src="cordova.js"></script>-->
+		<!-- your app's js -->
+		<script src="js/app.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/webserviceurl.js"></script>
+		<script src="js/controllers.js"></script>
+	</head>
+	<body ng-app="starter">
+		<div ng-controller="AppController">       
+			<ion-nav-view></ion-nav-view>
+		</div>
+		<script id="app.html" type="text/ng-template">
+			<ion-side-menus>
+				<ion-side-menu-content>
+					<ion-nav-bar class="bar bar-header bar-balanced">
+						<!--<ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>-->
+						<ion-nav-buttons side="left">
+							<button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+						</ion-nav-buttons>
+					</ion-nav-bar>
+					<ion-nav-view name="appContent"></ion-nav-view>
+				</ion-side-menu-content> 
+				<ion-side-menu side="left">
+					<ion-header-bar class="bar-energized">
+						<h1 class="title">Menu</h1>
+					</ion-header-bar>
+					<ion-content>
+						<ion-cart></ion-cart>
+						<ion-list>
+							<ion-item nav-clear menu-close ng-click ="profileAction()" >
+								Profile
+							</ion-item>
+							<ion-item nav-clear menu-close ng-click ="customAction()">
+								My Messages
+							</ion-item>
+							<ion-item nav-clear menu-close ng-click ="smsAction()">
+								Send Message
+							</ion-item>
+							<!--<ion-item nav-clear menu-close href="#/app/home">
+								Home
+							</ion-item>-->
+						</ion-list>
+					</ion-content>
+				</ion-side-menu>
+			</ion-side-menus>
+		</script>
+		<script id="home.html" type="text/ng-template">
+			<ion-view title="Coach Information">
+				<ion-content padding="true">
+					<div class="list mar_top">
+					<p class="center_text">Enter the following information and click Next to begin using this App.</p>
+					<div class="center_text pad_t_b"><span id="error_mess" class="has_error_color"></span></div>
+						<form id="reg" name="regFrm">
+							<label id='f_n' class="item item-input">
+								<input type="text" placeholder="First Name" name="username" ng-model="p.username" id="username" ng-mouseout="ngValidate(regFrm);">
+							</label>						  
+							<label id='l_n' class="item item-input">
+								<input type="text"  placeholder="Last Name" name="lastname" ng-model="p.lastname" id="lastname">
+							</label>
+							<label id='m_n' class="item item-input">
+								<input type="text" name="mobile" ng-model="p.mobile" id="mobile"  placeholder="Mobile Number" ng-mouseout="ngValidate(regFrm);" ng-bulr="ngValidate(regFrm);">
+							</label>
+							<label id="fax_n" class="item item-input">
+								<input type="text" name="fax" ng-model="p.fax" id="fax"  placeholder="Fax Number">
+							</label>
+							<label id="e_n" class="item item-input">
+								<input type="text" name="email" ng-model="p.email" id="email"  placeholder="Email Address" ng-mouseout="ngValidate(regFrm);">
+							</label>
+							<!--<label class="item item-input">
+								<textarea  id="address" name="address" Placeholder="Address" ng-model="p.address" ></textarea>
+							</label>-->
+							<label id='w_n' class="item item-input">
+								<input type="text" name="web_url" ng-model="p.web_url" id="web_url"  placeholder="Web Site URL">
+							</label>
+							<div>
+								<a class="button button-block  button-energized" ng-click="regForm(regFrm)">Next</a>
+							</div>
+						</form>
+					</div>					
+				</ion-content>
+			</ion-view>
+		</script>
+		<script id="profile.html" type="text/ng-template">
+			<ion-view title="Profile">
+				<ion-content padding="true">
+					<div class="list mar_top">
+						<div class="center_text pad_t_b"><span id="error_mess" class="has_error_color"></span></div>
+						<form id="reg" name="mainForm">
+							<label id="f_n" class="item item-input">
+								<input type="text" placeholder="First Name"  name="username" ng-model="puser_name"  id="username"  value="{{ puser_name }}" ng-mouseout="ngValidate(mainForm);">
+							</label>
+							<label class="item item-input">
+								<input type="text" placeholder="Last Name"  name="lastname" ng-model="plastname" id="lastname"  value="{{ plastname }}">
+							</label>
+							<label id="m_n" class="item item-input">
+								<input type="text" placeholder="Mobile Number"  name="mobile" ng-model="pmobile" id="mobile"  value="{{ pmobile }}" ng-mouseout="ngValidate(mainForm);">
+							</label>
+							<label id="e_n" class="item item-input">
+							<input type="email" name="email" ng-model="pemail" id="email"  placeholder="Email Address" value="{{ pemail }}" ng-mouseout="ngValidate(mainForm);">
+							</label>
+							<label class="item item-input">
+								<input type="text" placeholder="Fax Number"  name="fax" ng-model="pfax" id="fax"  value="{{ pfax }}">
+							</label>
+							<label class="item item-input">
+								<input type="text"  id="web_url"  name="web_url" ng-model="pweb_site_url"   placeholder="Web Site URL" value="{{ pweb_site_url }}">
+							</label>
+							<!--<label class="item item-input">
+								<textarea id="address" name="address" Placeholder="Address" ng-model="p.address" >{{ p.address }}</textarea>
+							</label>-->
+							<div>
+								<a class="button button-block  button-energized" ng-click="updForm(mainForm)">Next</a>
+							</div>
+							<div class="success-msg" id="profileMessage">{{ updatedMessage }}</div>
+						</form>
+					</div>
+				</ion-content>
+			</ion-view>
+		</script>
+		<script id="custommessage.html" type="text/ng-template">
+			<ion-view title="My Messages">
+				<ion-content padding="true" class="mar_top">
+					<div>
+						<div class="card" id="msgList" style="display:none;">
+							<div id="editMessage" class="item item-text-wrap">
+								{{ cmessage_name }}
+							</div>
+							<div id="editButton" class="padding">
+								<a class="button button-small button-balanced float_r" href="javascript:void(0)" ng-click="sendCMessage()">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+							</div>
+						</div>
+						<div class="padding" id="msgListnext" style="display:none;">
+								<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="navigateTosms(operations)">&nbsp;&nbsp;{{ operations }}&nbsp;&nbsp;</a>
+						</div>
+						<input type="text" style="display:none;" id="message_id" name="message_id" ng-model="cmessage_id" value="{{ cmessage_id }}">
+						<div class="center_text pad_t_b">
+							<span id="error_cus__mess" class="has_error_color"></span>
+						</div>						
+						<div class="card" id="customMessages">
+							<form id="frmCSms" name="frmCSms">
+								<div class="item item-text-wrap">
+									<textarea  id="cmessage_name" name="cmessage_name" Placeholder="Enter custom message that you wish to send to your contact or client." ng-model="cmessage_name" >{{ cmessage_name }}</textarea>
+								</div>
+								<div class="padding" >
+									<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="customSms(frmCSms)">&nbsp;&nbsp;Save&nbsp;&nbsp;</a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!--<div class="list mar_top" ng-if="csms.length==0">
+						<div class="center_text pad_t_b"><span id="error_cus__mess" class="has_error_color"></span></div>
+						<form id="frmCSms" name="frmCSms">
+							<label class="item item-input" id="ms_n">
+								<textarea id="messageIn" name="message" Placeholder="Enter custom message which you wish to send to your client" ng-model="message" >{{ message }}</textarea>
+							</label>
+							<input type="text" style="dispaly:none;" id="message_id" name="message_id" ng-model="message_id" value="">				
+							<div>
+								<a class="button button-block  button-energized" ng-click="customSms(frmCSms)">Next</a>
+							</div>
+						</form>		
+					</div>-->	
+				</ion-content>
+			</ion-view>
+		</script>
+		<script id="sendsms.html" type="text/ng-template">
+			<ion-view title="Send Message">
+				<ion-content padding="true">
+					<div class="list mar_top">
+						<div class="logo"><img src="img/logo.png"/></div>
+						<div class="center_text pad_t_b"><span id="error_sms_mess" class="has_error_color"></span></div>
+						<form id="sms" name="frmSms">
+							<label class="item item-input" id='mo_n'>
+								<input type="text" placeholder="Mobile Number"  name="mobile_1" ng-model="mobile_1" id="mobile_1" >
+							</label>
+							<!--<label class="item item-input">
+								<textarea id="message" name="message" Placeholder="Message" ng-model="message" >{{ message }}</textarea>
+							</label>-->
+							<label class="item item-input item-select" id="sms_mes">
+								<div class="input-label">
+								  Select Message
+								</div>
+								<select id="message_1" name="message_1" ng-model="message_1">
+									<option value=''>Select Message</option>
+								  <option value="1" selected="selected">Business Card</option>
+								  <option value="2">My Message</option>
+								</select>
+							</label>
+							<div>
+								<a class="button button-block  button-energized" ng-click="sendSmsForm(frmSms)">Send</a>
+							</div>
+							<div id="smsMsg" class="success-msg">{{ failError }}</div>
+						</form>
+					</div>
+				</ion-content>
+			</ion-view>
+		</script>
+	</body>
+</html>
