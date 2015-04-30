@@ -53,6 +53,7 @@ angular.module('starter', ['ionic'])
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
+	/*
 	$scope.profileAction = function() {
 		if(typeof localStorage["user_id"]!='undefined'){
 			$location.path('/app/profile');
@@ -74,6 +75,7 @@ angular.module('starter', ['ionic'])
 			$location.path('/app/home');
 		}
 	}
+	*/
 })
 .controller("HomeController", function($scope,$sce,$http,$location,$state) {
   	$scope.p ={};
