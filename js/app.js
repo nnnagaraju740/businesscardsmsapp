@@ -380,8 +380,10 @@ angular.module('starter', ['ionic'])
 		if(flag==false){
 			return false;
 		}else{
+			var mobileNum=smsForm.mobile_1.$viewValue;
+			var finalNum=mobileNum.replace(/\D/g,'');
 			var dataObj = {
-				mobile		:	smsForm.mobile_1.$viewValue,
+				mobile		:	finalNum,
 				message		:	smsForm.message_1.$viewValue,
 				user_id 	: 	JSON.parse(localStorage["user_id"]),
 				mobile_from : 	JSON.parse(localStorage["mobile"]),
