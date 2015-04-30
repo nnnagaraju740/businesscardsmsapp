@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .center_text{
 	text-align:center;
-	font-size:16px;
+	font-size:18px;
 }
 .mar_top{
 	margin-top:30px;
@@ -25,8 +25,9 @@ textarea{
 .bar .title{
 	font-size:19px !important;
 }
-textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] { font-size: 16px !important;}
-.button{ font-size: 18px !important;}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"],.item,.input-label { font-size: 18px !important;}
+.button{ font-size: 19px !important;}
+.item-select select{ font-size: 18px !important;}
 .list{margin-bottom:0!important; padding-bottom:0 !important}
 textarea:focus, input:focus{
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
@@ -62,6 +63,14 @@ input:focus, textarea:focus, select:focus {
        color:red;
 }
 .pad_t_b{
-       margin-bottom:2px;
+       margin-bottom:8px;
 }
 
+.success-msg{
+ color: green;
+ text-align: center;
+}
+.error-msg{
+ color: red;
+ text-align: center;
+}
