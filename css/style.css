@@ -61,6 +61,7 @@ input:focus, textarea:focus, select:focus {
 }
  .has_error_color{
        color:red;
+	   text-align: center;
 }
 .pad_t_b{
        margin-bottom:8px;
