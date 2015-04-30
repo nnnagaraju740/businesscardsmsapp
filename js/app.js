@@ -98,7 +98,7 @@ angular.module('starter', ['ionic'])
 		if($('#username').val()==''){
 			$('#f_n').removeClass("has_error_valid");
 			$('#f_n').addClass("has_error_invalid");
-			$('#error_mess').html('First Name is required.');
+			$('#error_mess').html('First name is required.');
 			flag=false; return false;
 		}else{ 
 			$('#f_n').removeClass("has_error_invalid");
@@ -108,20 +108,20 @@ angular.module('starter', ['ionic'])
 		if($('#mobile').val()==''){			
 			$('#m_n').removeClass("has_error_valid");
 			$('#m_n').addClass("has_error_invalid");
-			$('#error_mess').html('Mobile Number is required.');
+			$('#error_mess').html('Mobile number is required.');
 			flag=false; return false;
 		}else if($('#mobile').val()!=''){
 			var m_id = $('#mobile').val();
 			if(!filter.test(m_id)){
 				$('#m_n').removeClass("has_error_valid");
 				$('#m_n').addClass("has_error_invalid");
-				$('#error_mess').html('Please enter a US area code and phone number to send a message.');
+				$('#error_mess').html('Please enter a US area code and phone number.');
 				flag=false; return false;			
 			}else{
 				if(m_id.toString().length != 12){
 					$('#m_n').removeClass("has_error_valid");
 					$('#m_n').addClass("has_error_invalid");
-					$('#error_mess').html('Please enter a US area code and phone number to send a message.');
+					$('#error_mess').html('Please enter a US area code and phone number.');
 					flag=false; return false;	
 				}else{
 					var finalSmsNum=m_id.split('-');
@@ -132,7 +132,7 @@ angular.module('starter', ['ionic'])
 					}else{
 						$('#m_n').removeClass("has_error_valid");
 						$('#m_n').addClass("has_error_invalid");
-						$('#error_mess').html('Please enter a US area code and phone number to send a message.');
+						$('#error_mess').html('Please enter a US area code and phone number.');
 						flag=false; return false;
 					}
 				}
@@ -145,14 +145,14 @@ angular.module('starter', ['ionic'])
 		if($('#email').val()==''){			
 			$('#e_n').removeClass("has_error_valid");
 			$('#e_n').addClass("has_error_invalid");
-			$('#error_mess').html('Email Address is required.');
+			$('#error_mess').html('Email address is required.');
 			flag=false; return false;
 		}else if($('#email').val()!=''){
 			var e_id = $('#email').val();
 			if(!regex.test(e_id)){
 				$('#e_n').removeClass("has_error_valid");
 				$('#e_n').addClass("has_error_invalid");
-				$('#error_mess').html('Entered email formate is wrong.');
+				$('#error_mess').html('Please enter valid email address.');
 				flag=false; return false;
 			}else{
 				$('#e_n').removeClass("has_error_invalid");
@@ -214,7 +214,7 @@ angular.module('starter', ['ionic'])
 		if($('#username').val()==''){
 			$('#f_n').removeClass("has_error_valid");
 			$('#f_n').addClass("has_error_invalid");
-			$('#error_mess').html('First Name is required.');
+			$('#error_mess').html('First name is required.');
 			flag=false; return false;
 		}else{ 
 			$('#f_n').removeClass("has_error_invalid");
@@ -224,20 +224,20 @@ angular.module('starter', ['ionic'])
 		if($('#mobile').val()==''){			
 			$('#m_n').removeClass("has_error_valid");
 			$('#m_n').addClass("has_error_invalid");
-			$('#error_mess').html('Mobile Number is required.');
+			$('#error_mess').html('Mobile number is required.');
 			flag=false; return false;
 		}else if($('#mobile').val()!=''){
 			var m_id = $('#mobile').val();
 			if(!filter.test(m_id)){
 				$('#m_n').removeClass("has_error_valid");
 				$('#m_n').addClass("has_error_invalid");
-				$('#error_mess').html('Please enter a US area code and phone number to send a message.');
+				$('#error_mess').html('Please enter a US area code and phone number.');
 				flag=false; return false;			
 			}else{
 				if(m_id.toString().length != 12){
 					$('#m_n').removeClass("has_error_valid");
 					$('#m_n').addClass("has_error_invalid");
-					$('#error_mess').html('Please enter a US area code and phone number to send a message.');
+					$('#error_mess').html('Please enter a US area code and phone number.');
 					flag=false; return false;	
 				}else{
 					var finalSmsNum=m_id.split('-');
@@ -248,7 +248,7 @@ angular.module('starter', ['ionic'])
 					}else{
 						$('#m_n').removeClass("has_error_valid");
 						$('#m_n').addClass("has_error_invalid");
-						$('#error_mess').html('Please enter a US area code and phone number to send a message.');
+						$('#error_mess').html('Please enter a US area code and phone number.');
 						flag=false; return false;
 					}
 				}
@@ -261,14 +261,14 @@ angular.module('starter', ['ionic'])
 		if($('#email').val()==''){			
 			$('#e_n').removeClass("has_error_valid");
 			$('#e_n').addClass("has_error_invalid");
-			$('#error_mess').html('Email Address is required.');
+			$('#error_mess').html('Email address is required.');
 			flag=false; return false;
 		}else if($('#email').val()!=''){
 			var e_id = $('#email').val();
 			if(!regex.test(e_id)){
 			$('#e_n').removeClass("has_error_valid");
 			$('#e_n').addClass("has_error_invalid");
-			$('#error_mess').html('Entered email formate is wrong.');
+			$('#error_mess').html('Please enter a valid email address.');
 			flag=false; return false;
 		}else{
 			$('#e_n').removeClass("has_error_invalid");
@@ -335,7 +335,7 @@ angular.module('starter', ['ionic'])
 		if($('#mobile_1').val()==''){			
 			$('#mo_n').removeClass("has_error_valid");
 			$('#mo_n').addClass("has_error_invalid");
-			$('#error_sms_mess').html('Mobile Number is required.');
+			$('#error_sms_mess').html('Mobile number is required.');
 			flag=false; return false;
 		}else if($('#mobile_1').val()!=''){
 			var m_id = $('#mobile_1').val();
@@ -372,7 +372,7 @@ angular.module('starter', ['ionic'])
 		if($('#message_1').val()==''){
 			$('#sms_mes').removeClass("has_error_valid");
 			$('#sms_mes').addClass("has_error_invalid");
-			$('#error_sms_mess').html('Select Message');
+			$('#error_sms_mess').html('Select message');
 			flag=false; return false;	
 		}else{
 			$('#sms_mes').removeClass("has_error_invalid");
@@ -393,9 +393,13 @@ angular.module('starter', ['ionic'])
 			var smsUrl=webServiceUrl+'sendsms';
 			$http.post(smsUrl,dataObj).success(function(response) {
 				if(response.sms_id == '0'){
-					$scope.failError="Message Not Sent.";
+					$('#smsMsg').removeClass('success-msg');
+					$('#smsMsg').addClass('has_error_color');
+					$scope.failError="Message not sent.";
 				}else{
-					$scope.failError="Message Sent Successfully.";
+					$('#smsMsg').removeClass('has_error_color');
+					$('#smsMsg').addClass('success-msg');
+					$scope.failError="Message sent successfully.";
 				}
 				setTimeout(function() {
 						  $('#smsMsg').html("");
