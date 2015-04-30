@@ -134,7 +134,7 @@
 			<ion-view title="My Messages">
 				<ion-content padding="true" class="mar_top">
 					<div>
-						<div class="card" id="msgList" style="display:none;">
+						<div class="card" id="msgList" style="display:none; padding-bottom:10px">
 							<div id="editMessage" class="item item-text-wrap">
 								{{ cmessage_name }}
 							</div>
@@ -142,7 +142,7 @@
 								<a class="button button-small button-balanced float_r" href="javascript:void(0)" ng-click="sendCMessage()">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
 							</div>
 						</div>
-						<div class="padding" id="msgListnext" style="display:none;">
+						<div class="" id="msgListnext" style="display:none;">
 								<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="navigateTosms(operations)">&nbsp;&nbsp;{{ operations }}&nbsp;&nbsp;</a>
 						</div>
 						<input type="text" style="display:none;" id="message_id" name="message_id" ng-model="cmessage_id" value="{{ cmessage_id }}">

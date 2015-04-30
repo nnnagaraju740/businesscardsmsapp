@@ -413,7 +413,8 @@ angular.module('starter', ['ionic'])
 	
 	$scope.sendCMessage=function(){
 		$scope.operations="Update";
-		$('#editMessage').html('<textarea id="textareaMessage">'+$.trim($('#editMessage').html())+'</textarea>');
+		$('#editMessage').removeClass('item item-text-wrap');
+		$('#editMessage').html('<label  class="item item-input"><textarea id="textareaMessage">'+$.trim($('#editMessage').html())+'</textarea></label>');
 		$('#textareaMessage').focus();
 		$('#editButton').hide();
 	}
@@ -430,6 +431,7 @@ angular.module('starter', ['ionic'])
 			var smsUrl=webServiceUrl+'customsms';
 			$http.post(smsUrl,dataObj).success(function(response) {
 				$scope.operations="Next";
+				$('#editMessage').addClass('item item-text-wrap');
 				$('#editMessage').html($('#textareaMessage').val());
 				$('#editButton').show();
 			});
