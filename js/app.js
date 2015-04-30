@@ -113,13 +113,13 @@ angular.module('starter', ['ionic'])
 			if(!filter.test(m_id)){
 				$('#m_n').removeClass("has_error_valid");
 				$('#m_n').addClass("has_error_invalid");
-				$('#error_mess').html('Please enter only numbers.');
+				$('#error_mess').html('Please enter a US area code and phone number to send a message.');
 				flag=false; return false;			
 			}else{
 				if(m_id.toString().length != 12){
 					$('#m_n').removeClass("has_error_valid");
 					$('#m_n').addClass("has_error_invalid");
-					$('#error_mess').html('Please enter whole number.');
+					$('#error_mess').html('Please enter a US area code and phone number to send a message.');
 					flag=false; return false;	
 				}else{
 					var finalSmsNum=m_id.split('-');
@@ -130,7 +130,7 @@ angular.module('starter', ['ionic'])
 					}else{
 						$('#m_n').removeClass("has_error_valid");
 						$('#m_n').addClass("has_error_invalid");
-						$('#error_mess').html('Please enter valid number.');
+						$('#error_mess').html('Please enter a US area code and phone number to send a message.');
 						flag=false; return false;
 					}
 				}
@@ -229,13 +229,13 @@ angular.module('starter', ['ionic'])
 			if(!filter.test(m_id)){
 				$('#m_n').removeClass("has_error_valid");
 				$('#m_n').addClass("has_error_invalid");
-				$('#error_mess').html('Please enter only numbers.');
+				$('#error_mess').html('Please enter a US area code and phone number to send a message.');
 				flag=false; return false;			
 			}else{
 				if(m_id.toString().length != 12){
 					$('#m_n').removeClass("has_error_valid");
 					$('#m_n').addClass("has_error_invalid");
-					$('#error_mess').html('Please enter whole number.');
+					$('#error_mess').html('Please enter a US area code and phone number to send a message.');
 					flag=false; return false;	
 				}else{
 					var finalSmsNum=m_id.split('-');
@@ -246,7 +246,7 @@ angular.module('starter', ['ionic'])
 					}else{
 						$('#m_n').removeClass("has_error_valid");
 						$('#m_n').addClass("has_error_invalid");
-						$('#error_mess').html('Please enter valid number.');
+						$('#error_mess').html('Please enter a US area code and phone number to send a message.');
 						flag=false; return false;
 					}
 				}
@@ -340,13 +340,13 @@ angular.module('starter', ['ionic'])
 			if(!filter.test(m_id)){
 				$('#mo_n').removeClass("has_error_valid");
 				$('#mo_n').addClass("has_error_invalid");
-				$('#error_sms_mess').html('Please enter only numbers.');
+				$('#error_sms_mess').html('Please enter a US area code and phone number to send a message.');
 				flag=false; return false;			
 			}else{
 				if(m_id.toString().length != 12){
 					$('#mo_n').removeClass("has_error_valid");
 					$('#mo_n').addClass("has_error_invalid");
-					$('#error_sms_mess').html('Please enter whole number.');
+					$('#error_sms_mess').html('Please enter a US area code and phone number to send a message.');
 					flag=false; return false;	
 				}else{
 					var finalSmsNum=m_id.split('-');
@@ -357,7 +357,7 @@ angular.module('starter', ['ionic'])
 					}else{
 						$('#mo_n').removeClass("has_error_valid");
 						$('#mo_n').addClass("has_error_invalid");
-						$('#error_sms_mess').html('Please enter valid number.');
+						$('#error_sms_mess').html('Please enter a US area code and phone number to send a message.');
 						flag=false; return false;
 					}
 				}
