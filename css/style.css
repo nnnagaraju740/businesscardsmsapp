@@ -28,7 +28,8 @@ textarea{
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"],.item,.input-label { font-size: 18px !important;line-height: 20px !important }
 .button{ font-size: 19px !important;}
 .item-select select{ font-size: 18px !important;}
-.list{margin-bottom:0!important; padding-bottom:0 !important}
+.list{margin-bottom:0!important; padding-bottom:0 !important;}
+.item-select select{padding:6px 48px 5px 11px !important;}
 textarea:focus, input:focus{
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
     -webkit-user-modify: read-write-plaintext-only;
