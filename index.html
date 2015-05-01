@@ -98,18 +98,18 @@
 			<ion-view title="Profile">
 				<ion-content padding="true">
 					<div class="list mar_top">
-						<div class="center_text pad_t_b"><span id="error_mess" class="has_error_color"></span></div>
+						<div class="center_text pad_t_b"><span id="error_mess_u" class="has_error_color"></span></div>
 						<form id="reg" name="mainForm">
-							<label id="f_n" class="item item-input">
+							<label id="f_n_u" class="item item-input">
 								<input type="text" maxlength="30" placeholder="First Name"  name="username" ng-model="puser_name"  id="username"  value="{{ puser_name }}" ng-mouseout="ngValidate(mainForm);">
 							</label>
 							<label class="item item-input">
 								<input type="text" maxlength="30" placeholder="Last Name"  name="lastname" ng-model="plastname" id="lastname"  value="{{ plastname }}">
 							</label>
-							<label id="m_n" class="item item-input">
-								<input type="tel" maxlength="12" placeholder="Mobile Number"  name="mobile" ng-model="pmobile" id="mobile"  value="{{ pmobile }}" ng-mouseout="ngValidate(mainForm);" ng-keyup="validateNum()">
+							<label id="m_n_u" class="item item-input">
+								<input type="tel" maxlength="12" placeholder="Mobile Number"  name="ppmobile" ng-model="pmobile" id="ppmobile"  value="{{ pmobile }}" ng-mouseout="ngValidate(mainForm);" ng-keyup="validateNum()">
 							</label>
-							<label id="e_n" class="item item-input">
+							<label id="e_n_u" class="item item-input">
 							<input type="email" maxlength="50" name="email" ng-model="pemail" id="email"  placeholder="Email Address" value="{{ pemail }}" ng-mouseout="ngValidate(mainForm);">
 							</label>
 							<label class="item item-input">

@@ -175,13 +175,13 @@ angular.module('starter', ['ionic'])
 .controller('ProfileController', function($scope,$sce,$http,$location,$state) {
 	$scope.validateNum=function(){
 		var filterr = /^[0-9-+]+$/;
-		var mobileInt=$('#mobile').val();
+		var mobileInt=$('#ppmobile').val();
 		var stringNum=mobileInt.toString();
 		if(filterr.test(mobileInt)){
 			if(stringNum.length==3){
-				$('#mobile').val(mobileInt+'-');
+				$('#ppmobile').val(mobileInt+'-');
 			}else if(stringNum.length==7){
-				$('#mobile').val(mobileInt+'-');
+				$('#ppmobile').val(mobileInt+'-');
 			}
 		}
 	}
@@ -190,84 +190,85 @@ angular.module('starter', ['ionic'])
 		var filter = /^[0-9-+]+$/;
 		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		
-		//alert(ngForm.username.$viewValue);
-		if(ngForm.username.$viewValue == ''){
-			$('#f_n').removeClass("has_error_valid");
-			$('#f_n').addClass("has_error_invalid");
-			$('#error_mess').html('First name is required.');
+		var pusername=ngForm.username.$viewValue;
+		if(pusername == ''){
+			$('#f_n_u').removeClass("has_error_valid");
+			$('#f_n_u').addClass("has_error_invalid");
+			$('#error_mess_u').html('First name is required.');
 			flag=false; return false;
 		}else{ 
-			$('#f_n').removeClass("has_error_invalid");
-			$('#f_n').addClass("has_error_valid");
-			$('#error_mess').html('');
+			$('#f_n_u').removeClass("has_error_invalid");
+			$('#f_n_u').addClass("has_error_valid");
+			$('#error_mess_u').html('');
 		}
-		if(ngForm.mobile.$viewValue == ''){			
-			$('#m_n').removeClass("has_error_valid");
-			$('#m_n').addClass("has_error_invalid");
-			$('#error_mess').html('Mobile number is required.');
+		var pmobileNum=ngForm.ppmobile.$viewValue;
+		if(pmobileNum == ''){			
+			$('#m_n_u').removeClass("has_error_valid");
+			$('#m_n_u').addClass("has_error_invalid");
+			$('#error_mess_u').html('Mobile number is required.');
 			flag=false; return false;
-		}else if(ngForm.mobile.$viewValue != ''){
-			var m_id = ngForm.mobile.$viewValue;
+		}else if(pmobileNum != ''){
+			var m_id = pmobileNum;
 			if(!filter.test(m_id)){
-				$('#m_n').removeClass("has_error_valid");
-				$('#m_n').addClass("has_error_invalid");
-				$('#error_mess').html('Please enter a US area code and phone number.');
+				$('#m_n_u').removeClass("has_error_valid");
+				$('#m_n_u').addClass("has_error_invalid");
+				$('#error_mess_u').html('Please enter a US area code and phone number.');
 				flag=false; return false;			
 			}else{
 				if(m_id.toString().length != 12){
-					$('#m_n').removeClass("has_error_valid");
-					$('#m_n').addClass("has_error_invalid");
-					$('#error_mess').html('Please enter a US area code and phone number.');
+					$('#m_n_u').removeClass("has_error_valid");
+					$('#m_n_u').addClass("has_error_invalid");
+					$('#error_mess_u').html('Please enter a US area code and phone number.');
 					flag=false; return false;	
 				}else{
 					var finalSmsNum=m_id.split('-');
 					if(finalSmsNum[0].toString().length==3 && finalSmsNum[1].toString().length==3 && finalSmsNum[2].toString().length==4){
-						$('#m_n').removeClass("has_error_invalid");
-						$('#m_n').addClass("has_error_valid");
-						$('#error_mess').html('');
+						$('#m_n_u').removeClass("has_error_invalid");
+						$('#m_n_u').addClass("has_error_valid");
+						$('#error_mess_u').html('');
 					}else{
-						$('#m_n').removeClass("has_error_valid");
-						$('#m_n').addClass("has_error_invalid");
-						$('#error_mess').html('Please enter a US area code and phone number.');
+						$('#m_n_u').removeClass("has_error_valid");
+						$('#m_n_u').addClass("has_error_invalid");
+						$('#error_mess_u').html('Please enter a US area code and phone number.');
 						flag=false; return false;
 					}
 				}
 			}	
 		}else{ 
-			$('#m_n').removeClass("has_error_invalid");
-			$('#m_n').addClass("has_error_valid");
-			$('#error_mess').html('');
+			$('#m_n_u').removeClass("has_error_invalid");
+			$('#m_n_u').addClass("has_error_valid");
+			$('#error_mess_u').html('');
 		}
-		
-		if(ngForm.email.$viewValue == ''){			
-			$('#e_n').removeClass("has_error_valid");
-			$('#e_n').addClass("has_error_invalid");
-			$('#error_mess').html('Email address is required.');
+		var pemailAdd=ngForm.email.$viewValue;
+		if(pemailAdd == ''){			
+			$('#e_n_u').removeClass("has_error_valid");
+			$('#e_n_u').addClass("has_error_invalid");
+			$('#error_mess_u').html('Email address is required.');
 			flag=false; return false;
-		}else if(ngForm.email.$viewValue != ''){
-			var e_id = $('#email').val();
+		}else if(pemailAdd != ''){
+			var e_id = pemailAdd;
 			if(!regex.test(e_id)){
-			$('#e_n').removeClass("has_error_valid");
-			$('#e_n').addClass("has_error_invalid");
-			$('#error_mess').html('Please enter a valid email address.');
+			$('#e_n_u').removeClass("has_error_valid");
+			$('#e_n_u').addClass("has_error_invalid");
+			$('#error_mess_u').html('Please enter a valid email address.');
 			flag=false; return false;
 		}else{
-			$('#e_n').removeClass("has_error_invalid");
-			$('#e_n').addClass("has_error_valid");
-			$('#error_mess').html('');
+			$('#e_n_u').removeClass("has_error_invalid");
+			$('#e_n_u').addClass("has_error_valid");
+			$('#error_mess_u').html('');
 		}
 		}else{ 
-			$('#e_n').removeClass("has_error_invalid");
-			$('#e_n').addClass("has_error_valid");
-			$('#error_mess').html('');
+			$('#e_n_u').removeClass("has_error_invalid");
+			$('#e_n_u').addClass("has_error_valid");
+			$('#error_mess_u').html('');
 		}
 		$scope.user_id 		= 	JSON.parse(localStorage["user_id"]);
 		var dataObj = {
-			username		:	ngForm.username.$viewValue,
+			username		:	pusername,
 			lastname		:	ngForm.lastname.$viewValue,
-			mobile_num		:	ngForm.mobile.$viewValue,
+			mobile_num		:	pmobileNum,
 			fax		        :	ngForm.fax.$viewValue,
-			email		    :	ngForm.email.$viewValue,
+			email		    :	pemailAdd,
 			web_url		    :	ngForm.web_url.$viewValue
 		};
 		
