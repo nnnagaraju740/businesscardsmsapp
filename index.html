@@ -156,11 +156,15 @@
 									<textarea  id="cmessage_name" name="cmessage_name" Placeholder="Enter custom message that you wish to send to your contact or client." ng-model="cmessage_name" >{{ cmessage_name }}</textarea>
 								</label>
 								</div>
-								<div class="" >
-									<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="customSms(frmCSms)">&nbsp;&nbsp;Save&nbsp;&nbsp;</a>
+								<div id="messageNext" >
+									<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="customSms(frmCSms,0)">&nbsp;&nbsp;Next&nbsp;&nbsp;</a>
+								</div>
+								<div id="messageUpdate" style="display:none">
+									<a class="button button-block  button-energized"  href="javascript:void(0);" ng-click="customSms(frmCSms,1)">&nbsp;&nbsp;Update&nbsp;&nbsp;</a>
 								</div>
 							</form>
 						</div>
+						<div class="success-msg" id="updateMessage"></div>
 					</div>
 					<!--<div class="list mar_top" ng-if="csms.length==0">
 						<div class="center_text pad_t_b"><span id="error_cus__mess" class="has_error_color"></span></div>

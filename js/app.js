@@ -392,7 +392,7 @@ angular.module('starter', ['ionic'])
 	}
 })
 .controller("customSmsController", function($scope,$sce,$http,$compile,$location,$state) {
-	
+	/*
 	$scope.sendCMessage=function(){
 		$scope.operations="Update";
 		$('#editMessage').removeClass('item item-text-wrap');
@@ -419,7 +419,8 @@ angular.module('starter', ['ionic'])
 			});
 		}
 	}
-	$scope.customSms=function(csmsForm){
+	*/
+	$scope.customSms=function(csmsForm,navValue){
 		var flag= true;
 		if($('#cmessage_name').val()==''){
 			$('#ms_n').removeClass("has_error_valid");
@@ -439,11 +440,15 @@ angular.module('starter', ['ionic'])
 			}else{
 				var message_text=csmsForm.cmessage_name.$viewValue;
 			}
-			$('#customMessages').hide();
-			$('#msgList').show();
-			$('#msgListnext').show();
-			$scope.operations="Next";
-			message_id = '';
+			//$('#customMessages').hide();
+			//$('#msgList').show();
+			//$('#msgListnext').show();
+			//$scope.operations="Next";
+			if(typeof localStorage["cmessage_id"]=='undefined'){
+				message_id = '';
+			}else{
+				message_id = JSON.parse(localStorage["cmessage_id"]);
+			}
 			var dataObj = {
 				 message		:	message_text,
 				 user_id 	    : 	JSON.parse(localStorage["user_id"]),
@@ -451,10 +456,20 @@ angular.module('starter', ['ionic'])
 			 };		
 			var smsUrl=webServiceUrl+'customsms';
 			$http.post(smsUrl,dataObj).success(function(response) {
-				$scope.message='';
-				$('#customMessages').hide();
-				$scope.cmessage_id = response.mess_id;
-				//$location.path('/app/sendsms');
+				//$scope.message='';
+				//$('#customMessages').hide();
+				//$scope.cmessage_id = response.mess_id;
+				if(navValue==1){
+					$('#updateMessage').html('Message updated successfully.');
+					setTimeout(function() {
+						  $('#updateMessage').html("");
+				}, 10000);
+				}else{
+					localStorage.setItem( 'cmessage_id', JSON.stringify(response.mess_id) );
+					$('#messageNext').hide();
+					$('#messageUpdate').show();
+					$location.path('/app/sendsms');
+				}
 			});
 		}
 	}
@@ -463,17 +478,17 @@ angular.module('starter', ['ionic'])
 		$http.get(webServiceUrl+'customsms/'+$scope.user_id)	
 		.success(function(response) {
 			if(response.value == 1){
-				$scope.message='';
-				$('#customMessages').hide();
-				$('#msgList').show();
-				$('#msgListnext').show();
-				$scope.operations="Next";
+				//$scope.message='';
+				//$('#customMessages').hide();
+				//$('#msgList').show();
+				//$('#msgListnext').show();
+				//$scope.operations="Next";
 				$scope.cmessage_name = response.result[0].message_name;
 				$scope.dmessage_name = response.result[0].message_name;
 				$scope.cmessage_id = response.result[0].message_id;  
 			}else{
-				$('#customMessages').show();
-				$scope.cmessage_id="";
+				//$('#customMessages').show();
+				$scope.cmessage_id=0;
 			}
 		});
 	}else{
