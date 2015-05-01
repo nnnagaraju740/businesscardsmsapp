@@ -72,7 +72,7 @@
 								<input type="text"  maxlength="30" placeholder="Last Name" name="lastname" ng-model="p.lastname" id="lastname">
 							</label>
 							<label id='m_n' class="item item-input">
-								<input type="text" maxlength="12" name="mobile" ng-model="p.mobile" id="mobile"  placeholder="Mobile Number" ng-mouseout="ngValidate(regFrm);" ng-bulr="ngValidate(regFrm);" ng-keyup="validateRNum()">
+								<input type="tel" maxlength="12" name="mobile" ng-model="p.mobile" id="mobile"  placeholder="Mobile Number" ng-mouseout="ngValidate(regFrm);" ng-bulr="ngValidate(regFrm);" ng-keyup="validateRNum()">
 							</label>
 							<label id="fax_n" class="item item-input">
 								<input type="text" name="fax" ng-model="p.fax" id="fax"  placeholder="Fax Number">
@@ -107,7 +107,7 @@
 								<input type="text" maxlength="30" placeholder="Last Name"  name="lastname" ng-model="plastname" id="lastname"  value="{{ plastname }}">
 							</label>
 							<label id="m_n" class="item item-input">
-								<input type="text" maxlength="12" placeholder="Mobile Number"  name="mobile" ng-model="pmobile" id="mobile"  value="{{ pmobile }}" ng-mouseout="ngValidate(mainForm);" ng-keyup="validateNum()">
+								<input type="tel" maxlength="12" placeholder="Mobile Number"  name="mobile" ng-model="pmobile" id="mobile"  value="{{ pmobile }}" ng-mouseout="ngValidate(mainForm);" ng-keyup="validateNum()">
 							</label>
 							<label id="e_n" class="item item-input">
 							<input type="email" maxlength="50" name="email" ng-model="pemail" id="email"  placeholder="Email Address" value="{{ pemail }}" ng-mouseout="ngValidate(mainForm);">
@@ -189,7 +189,7 @@
 						<div class="center_text pad_t_b"><span id="error_sms_mess" class="has_error_color"></span></div>
 						<form id="sms" name="frmSms">
 							<label class="item item-input" id='mo_n'>
-								<input type="text" maxlength="12" placeholder="Mobile Number"  name="mobile_1" ng-model="mobile_1" id="mobile_1" ng-keyup="addIphon()">
+								<input type="tel" maxlength="12" placeholder="Mobile Number"  name="mobile_1" ng-model="mobile_1" id="mobile_1" ng-keyup="addIphon()">
 							</label>
 							<!--<label class="item item-input">
 								<textarea id="message" name="message" Placeholder="Message" ng-model="message" >{{ message }}</textarea>

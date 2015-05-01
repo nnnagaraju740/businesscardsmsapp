@@ -189,7 +189,9 @@ angular.module('starter', ['ionic'])
 		var flag = true;
 		var filter = /^[0-9-+]+$/;
 		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		if($('#username').val()==''){
+		
+		//alert(ngForm.username.$viewValue);
+		if(ngForm.username.$viewValue == ''){
 			$('#f_n').removeClass("has_error_valid");
 			$('#f_n').addClass("has_error_invalid");
 			$('#error_mess').html('First name is required.');
@@ -199,13 +201,13 @@ angular.module('starter', ['ionic'])
 			$('#f_n').addClass("has_error_valid");
 			$('#error_mess').html('');
 		}
-		if($('#mobile').val()==''){			
+		if(ngForm.mobile.$viewValue == ''){			
 			$('#m_n').removeClass("has_error_valid");
 			$('#m_n').addClass("has_error_invalid");
 			$('#error_mess').html('Mobile number is required.');
 			flag=false; return false;
-		}else if($('#mobile').val()!=''){
-			var m_id = $('#mobile').val();
+		}else if(ngForm.mobile.$viewValue != ''){
+			var m_id = ngForm.mobile.$viewValue;
 			if(!filter.test(m_id)){
 				$('#m_n').removeClass("has_error_valid");
 				$('#m_n').addClass("has_error_invalid");
@@ -236,12 +238,13 @@ angular.module('starter', ['ionic'])
 			$('#m_n').addClass("has_error_valid");
 			$('#error_mess').html('');
 		}
-		if($('#email').val()==''){			
+		
+		if(ngForm.email.$viewValue == ''){			
 			$('#e_n').removeClass("has_error_valid");
 			$('#e_n').addClass("has_error_invalid");
 			$('#error_mess').html('Email address is required.');
 			flag=false; return false;
-		}else if($('#email').val()!=''){
+		}else if(ngForm.email.$viewValue != ''){
 			var e_id = $('#email').val();
 			if(!regex.test(e_id)){
 			$('#e_n').removeClass("has_error_valid");
@@ -266,7 +269,8 @@ angular.module('starter', ['ionic'])
 			fax		        :	ngForm.fax.$viewValue,
 			email		    :	ngForm.email.$viewValue,
 			web_url		    :	ngForm.web_url.$viewValue
-		};	
+		};
+		
 		$http.put(webServiceUrl+'register/'+$scope.user_id,dataObj)
 		.success(function(response) {
 			$('#profileMessage').html("Profile updated successfully.");
