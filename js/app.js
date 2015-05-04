@@ -375,7 +375,7 @@ angular.module('starter', ['ionic'])
 			};	
 			var smsUrl=webServiceUrl+'sendsms';
 			$http.post(smsUrl,dataObj).success(function(response) {
-				if(response.sms_id == '0'){
+				if(response.sms_id == 0){
 					$('#smsMsg').removeClass('success-msg');
 					$('#smsMsg').addClass('has_error_color');
 					$scope.failError="Message not sent.";
@@ -385,7 +385,7 @@ angular.module('starter', ['ionic'])
 					$scope.failError="Message sent successfully.";
 				}
 				setTimeout(function() {
-						  $('#smsMsg').html("");
+						  $scope.failError="";
 				}, 10000);	
 				$('#mobile_1').val("");				
 				$('#message_1').val("");				
