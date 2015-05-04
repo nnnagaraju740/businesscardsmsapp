@@ -299,7 +299,6 @@ angular.module('starter', ['ionic'])
 })
 
 .controller("smsController", function($scope,$sce,$http,$location,$state) {	
-	$scope.failError ='';
 	$scope.addIphon=function(){
 		var filterr = /^[0-9-+]+$/;
 		var mobileInt=$('#mobile_1').val();
@@ -378,14 +377,14 @@ angular.module('starter', ['ionic'])
 				if(response.sms_id == 0){
 					$('#smsMsg').removeClass('success-msg');
 					$('#smsMsg').addClass('has_error_color');
-					$scope.failError="Message not sent.";
+					$('#smsMsg').html("Message not sent.");
 				}else{
 					$('#smsMsg').removeClass('has_error_color');
 					$('#smsMsg').addClass('success-msg');
-					$scope.failError="Message sent successfully.";
+					$('#smsMsg').html("Message sent successfully.");
 				}
 				setTimeout(function() {
-						  $scope.failError="";
+					$('#smsMsg').html("");
 				}, 10000);	
 				$('#mobile_1').val("");				
 				$('#message_1').val("");				
