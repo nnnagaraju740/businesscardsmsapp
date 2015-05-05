@@ -68,6 +68,51 @@ angular.module('starter', ['ionic'])
 			}
 		}
 	}
+	$scope.isInValidFormatt=function(emailId){
+		var arCount = (emailId.match(/@/g) || []).length;
+		if( parseInt(arCount) == parseInt("0") || parseInt(arCount) > parseInt("1") || ((parseInt(arCount) == parseInt("1")) && (emailId.charAt(0) == "@")) )
+		{
+			return false;
+		}
+		
+		var splitOnDot = emailId.split( "." );
+		if(Math.floor(splitOnDot[1]) == splitOnDot[1] && $.isNumeric(splitOnDot[1])){
+			return false;
+		}		
+		if( parseInt(splitOnDot.length) == parseInt("1") )
+		{
+			return false;
+		}
+		for( var sodi = 0;sodi < splitOnDot.length;sodi++ )
+		{
+			if( splitOnDot[sodi].length == 0 )
+			{
+				return false;
+			}
+		}
+		var splitOnAr = emailId.split( "@" );
+		for( var soari = 0;soari < splitOnAr.length;soari++ )
+		{
+			if( splitOnAr[soari].length == 0 )
+			{
+				return false;
+			}
+			var splitOnDot = splitOnAr[soari].split( "." );
+			for( var sodi = 0;sodi < splitOnDot.length;sodi++ )
+			{
+				if( splitOnDot[sodi].length == 0 )
+				{
+					return false;
+				}
+			}
+		}
+		var splitOnDotCom = emailId.split( ".com" );
+		if( parseInt(splitOnDotCom.length) > parseInt("2") )
+		{
+			return false;
+		}
+		return true;
+	}
 	$scope.regForm = function(ngForm) {
 		var flag = true;
 		var filter = /^[0-9-+]+$/;
@@ -126,7 +171,8 @@ angular.module('starter', ['ionic'])
 			flag=false; return false;
 		}else if($('#email').val()!=''){
 			var e_id = $('#email').val();
-			if(!regex.test(e_id)){
+			var emailValidd=$scope.isInValidFormatt(e_id);
+			if(!emailValidd){
 				$('#e_n').removeClass("has_error_valid");
 				$('#e_n').addClass("has_error_invalid");
 				$('#error_mess').html('Please enter valid email address.');
@@ -185,10 +231,54 @@ angular.module('starter', ['ionic'])
 			}
 		}
 	}
+	$scope.isInValidFormat=function(emailId){
+		var arCount = (emailId.match(/@/g) || []).length;
+		if( parseInt(arCount) == parseInt("0") || parseInt(arCount) > parseInt("1") || ((parseInt(arCount) == parseInt("1")) && (emailId.charAt(0) == "@")) )
+		{
+			return false;
+		}
+		
+		var splitOnDot = emailId.split( "." );
+		if(Math.floor(splitOnDot[1]) == splitOnDot[1] && $.isNumeric(splitOnDot[1])){
+			return false;
+		}		
+		if( parseInt(splitOnDot.length) == parseInt("1") )
+		{
+			return false;
+		}
+		for( var sodi = 0;sodi < splitOnDot.length;sodi++ )
+		{
+			if( splitOnDot[sodi].length == 0 )
+			{
+				return false;
+			}
+		}
+		var splitOnAr = emailId.split( "@" );
+		for( var soari = 0;soari < splitOnAr.length;soari++ )
+		{
+			if( splitOnAr[soari].length == 0 )
+			{
+				return false;
+			}
+			var splitOnDot = splitOnAr[soari].split( "." );
+			for( var sodi = 0;sodi < splitOnDot.length;sodi++ )
+			{
+				if( splitOnDot[sodi].length == 0 )
+				{
+					return false;
+				}
+			}
+		}
+		var splitOnDotCom = emailId.split( ".com" );
+		if( parseInt(splitOnDotCom.length) > parseInt("2") )
+		{
+			return false;
+		}
+		return true;
+	}
 	$scope.updForm = function(ngForm) {
 		var flag = true;
 		var filter = /^[0-9-+]+$/;
-		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		
 		var pusername=ngForm.username.$viewValue;
 		if(pusername == ''){
@@ -247,7 +337,8 @@ angular.module('starter', ['ionic'])
 			flag=false; return false;
 		}else if(pemailAdd != ''){
 			var e_id = pemailAdd;
-			if(!regex.test(e_id)){
+			var emailValid=$scope.isInValidFormat(e_id);
+			if(!emailValid){
 			$('#e_n_u').removeClass("has_error_valid");
 			$('#e_n_u').addClass("has_error_invalid");
 			$('#error_mess_u').html('Please enter a valid email address.');
