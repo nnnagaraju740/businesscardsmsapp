@@ -91,6 +91,11 @@ angular.module('starter', ['ionic'])
 			}
 		}
 		var splitOnAr = emailId.split( "@" );
+		var splitOnDotCom = splitOnAr[1].split( "." );
+		if( parseInt(splitOnDotCom.length) > parseInt("2") )
+		{
+			return false;
+		}
 		for( var soari = 0;soari < splitOnAr.length;soari++ )
 		{
 			if( splitOnAr[soari].length == 0 )
@@ -105,11 +110,6 @@ angular.module('starter', ['ionic'])
 					return false;
 				}
 			}
-		}
-		var splitOnDotCom = emailId.split( ".com" );
-		if( parseInt(splitOnDotCom.length) > parseInt("2") )
-		{
-			return false;
 		}
 		return true;
 	}
@@ -254,6 +254,11 @@ angular.module('starter', ['ionic'])
 			}
 		}
 		var splitOnAr = emailId.split( "@" );
+		var splitOnDotCom = splitOnAr[1].split( "." );
+		if( parseInt(splitOnDotCom.length) > parseInt("2") )
+		{
+			return false;
+		}
 		for( var soari = 0;soari < splitOnAr.length;soari++ )
 		{
 			if( splitOnAr[soari].length == 0 )
@@ -268,11 +273,6 @@ angular.module('starter', ['ionic'])
 					return false;
 				}
 			}
-		}
-		var splitOnDotCom = emailId.split( ".com" );
-		if( parseInt(splitOnDotCom.length) > parseInt("2") )
-		{
-			return false;
 		}
 		return true;
 	}
