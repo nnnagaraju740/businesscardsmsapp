@@ -277,7 +277,7 @@ angular.module('starter', ['ionic'])
 			$('#profileMessage').html("Profile updated successfully.");
 			setTimeout(function() {
 				$('#profileMessage').html("");
-			}, 2000);
+			}, 10000);
 			//$location.path('/app/custommessage');
 		});
 	}
