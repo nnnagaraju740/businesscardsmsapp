@@ -169,7 +169,7 @@ angular.module('starter', ['ionic'])
 	}
 	if(typeof localStorage["user_id"]!='undefined'){
 		//$scope.profileAction();
-		$location.path('/app/profile');
+		$location.path('/app/sendsms');
 	}
 })
 .controller('ProfileController', function($scope,$sce,$http,$location,$state) {
